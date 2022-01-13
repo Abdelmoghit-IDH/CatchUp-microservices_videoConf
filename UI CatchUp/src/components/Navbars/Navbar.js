@@ -100,7 +100,7 @@ class DemoNavbar extends React.Component {
                   <NavItem>
                     <NavLink
                       className="nav-link-icon"
-                      href="https://www.facebook.com/creativetim"
+                      href=""
                       id="tooltip333589074"
                     >
                       <i className="fa fa-facebook-square" />
@@ -115,7 +115,7 @@ class DemoNavbar extends React.Component {
                   <NavItem>
                     <NavLink
                       className="nav-link-icon"
-                      href="https://www.instagram.com/creativetimofficial"
+                      href=""
                       id="tooltip356693867"
                     >
                       <i className="fa fa-instagram" />
@@ -130,7 +130,7 @@ class DemoNavbar extends React.Component {
                   <NavItem>
                     <NavLink
                       className="nav-link-icon"
-                      href="https://twitter.com/creativetim"
+                      href=""
                       id="tooltip184698705"
                     >
                       <i className="fa fa-twitter-square" />
@@ -142,7 +142,7 @@ class DemoNavbar extends React.Component {
                       Follow us on Twitter
                     </UncontrolledTooltip>
                   </NavItem>
-                  <NavItem>
+                  {/* <NavItem>
                     <NavLink
                       className="nav-link-icon"
                       href="https://github.com/creativetimofficial/argon-design-system-react"
@@ -156,7 +156,7 @@ class DemoNavbar extends React.Component {
                     <UncontrolledTooltip delay={0} target="tooltip112445449">
                       Star us on Github
                     </UncontrolledTooltip>
-                  </NavItem>
+                  </NavItem> */}
 
                   <NavItem className="d-none d-lg-block ml-lg-4">
                     <Link className="text-light" to="/login-page">

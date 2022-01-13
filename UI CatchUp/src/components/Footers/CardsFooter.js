@@ -24,14 +24,15 @@ class CardsFooter extends React.Component {
                   Thank you for supporting us!
                 </h3>
                 <h4 className="mb-0 font-weight-light">
-                  Let's get in touch on any of these platforms.
+                  {/* Let's get in touch on any of these platforms. */}
+                  The platform is always in development to make your experience better.
                 </h4>
               </Col>
               <Col className="text-lg-center btn-wrapper" lg="6">
                 <Button
                   className="btn-icon-only rounded-circle"
                   color="twitter"
-                  href="https://twitter.com/creativetim"
+                  href=""
                   id="tooltip475038074"
                 >
                   <span className="btn-inner--icon">
@@ -44,7 +45,7 @@ class CardsFooter extends React.Component {
                 <Button
                   className="btn-icon-only rounded-circle ml-1"
                   color="facebook"
-                  href="https://www.facebook.com/creativetim"
+                  href=""
                   id="tooltip837440414"
                 >
                   <span className="btn-inner--icon">
@@ -54,10 +55,10 @@ class CardsFooter extends React.Component {
                 <UncontrolledTooltip delay={0} target="tooltip837440414">
                   Like us
                 </UncontrolledTooltip>
-                <Button
+                {/* <Button
                   className="btn-icon-only rounded-circle ml-1"
                   color="dribbble"
-                  href="https://dribbble.com/creativetim"
+                  href=""
                   id="tooltip829810202"
                 >
                   <span className="btn-inner--icon">
@@ -79,7 +80,7 @@ class CardsFooter extends React.Component {
                 </Button>
                 <UncontrolledTooltip delay={0} target="tooltip495507257">
                   Star on Github
-                </UncontrolledTooltip>
+                </UncontrolledTooltip> */}
               </Col>
             </Row>
             <hr />
@@ -88,9 +89,9 @@ class CardsFooter extends React.Component {
                 <div className="copyright">
                   © {new Date().getFullYear()}{" "}
                   <a
-                    href="https://www.creative-tim.com?ref=adsr-footer"
+                    href=""
                   >
-                    Creative Team
+                    Catch Up
                   </a>
                   .
                 </div>
@@ -99,30 +100,30 @@ class CardsFooter extends React.Component {
                 <Nav className="nav-footer justify-content-end">
                   <NavItem>
                     <NavLink
-                      href="https://www.creative-tim.com?ref=adsr-footer"
+                      href=""
                     >
-                      Creative Team
+                      Catch Up
                     </NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      href="https://www.creative-tim.com/presentation?ref=adsr-footer"
+                      href=""
                     >
                       About Us
                     </NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      href="http://blog.creative-tim.com?ref=adsr-footer"
+                      href=""
                     >
                       Blog
                     </NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink
-                      href="https://github.com/creativetimofficial/argon-design-system-react/blob/main/LICENSE.md"
+                      href=""
                     >
-                      MIT License
+                      (C) License
                     </NavLink>
                   </NavItem>
                 </Nav>
