@@ -5,6 +5,7 @@ import ForgotPassword from "./views/ForgotPassword";
 import Landing from "./views/Landing";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import VideoConf from "./views/VideoConf";
 
 function App() {
   return (
@@ -29,6 +30,11 @@ function App() {
           path="/forgot-password"
           exact
           render={(props) => <ForgotPassword {...props} />}
+        />
+        <Route
+          path="/video-conference"
+          exact
+          render={(props) => <VideoConf {...props} />}
         />
         <Redirect to="/" />
       </Switch>

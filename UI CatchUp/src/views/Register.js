@@ -132,6 +132,8 @@ class Register extends React.Component {
           message: response.data.message,
           successful: true,
           password: "",
+          username: "",
+          email: "",
         });
       },
       (error) => {
@@ -227,14 +229,6 @@ class Register extends React.Component {
                             />
                           </InputGroup>
                         </FormGroup>
-                        <div className="text-muted font-italic">
-                          <small>
-                            password strength:{" "}
-                            <span className="text-success font-weight-700">
-                              strong
-                            </span>
-                          </small>
-                        </div>
                         <Row className="my-4">
                           <Col xs="12">
                             <div className="custom-control custom-control-alternative custom-checkbox">
