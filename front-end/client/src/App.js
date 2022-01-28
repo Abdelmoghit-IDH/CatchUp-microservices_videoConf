@@ -6,8 +6,8 @@ import ForgotPassword from "./views/ForgotPassword";
 import Landing from "./views/Landing";
 import Login from "./views/Login";
 import Register from "./views/Register";
-import Main from './components/videoConference/Main/Main';
 import Room from './components/videoConference/Room/Room';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 
 function App() {
@@ -35,16 +35,7 @@ function App() {
           render={(props) => <ForgotPassword {...props} />}
         />
         <AppContainer>
-          <Route 
-            exact 
-            path="/video-conference" 
-            component={Main} 
-          />
-          <Route 
-            exact 
-            path="/room/:roomId" 
-            component={Room} 
-          />
+        <PrivateRoute exact path="/room/:roomId" component={Room} />
         </AppContainer>
         <Redirect to="/" />
       </Switch>

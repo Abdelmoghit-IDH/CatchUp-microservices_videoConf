@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 // JavaScript plugin that hides or shows a component based on your scroll
 import Headroom from "headroom.js";
 
+import AuthService from "../../services/auth.service";
+
 // reactstrap components
 import {
   Button,
@@ -25,14 +27,15 @@ import argonReact from "../../assets/img/brand/argon-react.png";
 class DemoNavbar extends React.Component {
   constructor(props) {
     super(props);
+    this.logOut = this.logOut.bind(this);
 
     this.state = {
       redirect: null,
       userReady: false,
-      currentUser: { username: "" }
+      currentUser: { username: "" },
+      auth: JSON.parse(localStorage.getItem("user")),
     };
   }
-
 
   componentDidMount() {
     let headroom = new Headroom(document.getElementById("navbar-main"));
@@ -56,9 +59,16 @@ class DemoNavbar extends React.Component {
     });
   };
 
+  logOut(e){
+    e.preventDefault();
+    console.log("clicked!!")
+    AuthService.logout();
+    window.location.reload(false);
+  }
+
   render() {
     const showGetStarted = ["login", "register", "forgetPassword"];
-    console.log("current user",this.props.currentPage)
+    //console.log("current user",this.props.currentPage)
     return (
       <>
         <header className="header-global">
@@ -142,35 +152,32 @@ class DemoNavbar extends React.Component {
                       Follow us on Twitter
                     </UncontrolledTooltip>
                   </NavItem>
-                  {/* <NavItem>
-                    <NavLink
-                      className="nav-link-icon"
-                      href="https://github.com/creativetimofficial/argon-design-system-react"
-                      id="tooltip112445449"
-                    >
-                      <i className="fa fa-github" />
-                      <span className="nav-link-inner--text d-lg-none ml-2">
-                        Github
-                      </span>
-                    </NavLink>
-                    <UncontrolledTooltip delay={0} target="tooltip112445449">
-                      Star us on Github
-                    </UncontrolledTooltip>
-                  </NavItem> */}
-
                   <NavItem className="d-none d-lg-block ml-lg-4">
                     <Link className="text-light" to="/login-page">
-                      {(!showGetStarted.includes(this.props.currentPage) || this.props.currentUser!=="") && (
-                        <Button
-                          className="btn-neutral btn-icon"
-                          color="default"
-                        >
-                          <span className="nav-link-inner--text ml-1">
-                            Get Started
-                          </span>
-                        </Button>
-                      )}
+                      {(!showGetStarted.includes(this.props.currentPage) ||
+                        this.props.currentUser !== "") &&
+                        !this.state.auth && (
+                          <Button
+                            className="btn-neutral btn-icon"
+                            color="default"
+                          >
+                            <span className="nav-link-inner--text ml-1">
+                              Get Started
+                            </span>
+                          </Button>
+                        )}
                     </Link>
+                    {this.state.auth && (
+                      <Button
+                        className="btn-1 mb-3 mb-sm-0 ml-2"
+                        outline
+                        type="button"
+                        color="info"
+                        onClick={this.logOut}
+                      >
+                        LogOut
+                      </Button>
+                    )}
                   </NavItem>
                 </Nav>
               </UncontrolledCollapse>

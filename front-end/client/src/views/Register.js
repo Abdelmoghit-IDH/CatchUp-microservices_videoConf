@@ -128,6 +128,8 @@ class Register extends React.Component {
       this.state.password
     ).then(
       (response) => {
+        this.props.history.push("/");
+        window.location.reload();
         this.setState({
           message: response.data.message,
           successful: true,

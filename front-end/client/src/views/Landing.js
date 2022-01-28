@@ -17,11 +17,7 @@ import {
   Container,
   Row,
   Col,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
+
 } from "reactstrap";
 
 // core components
@@ -44,43 +40,49 @@ class Landing extends React.Component {
     super(props);
     this.clickJoin = this.clickJoin.bind(this);
 
-    socket.on("FE-error-user-exist", ({ error }) => {
-      if (!error) {
-        const roomName = "abdelmoghit"; // this.state.roomRef.current.value;
-        const userName = "abdelmoghit"; //this.state.userRef.current.value;
-
-        sessionStorage.setItem("user", userName);
-        props.history.push(`/room/${roomName}`);
-      } else {
-        //setErr(error);
-        //setErrMsg('User name already exist');
-      }
-    });
-
     this.state = {
-      roomRef: "",
-      userRef: "",
+      roomName: "",
+      userName: "",
       errMsg: "",
       redirect: null,
       userReady: false,
+      roomInput: "",
       currentUser: { username: "" },
     };
+
+    socket.on("FE-error-user-exist", ({ error }) => {
+      if (!this.state.userReady) {
+        if (!error) {
+          const userName = "abdelmoghit";
+          const roomName = this.generateToken(8);
+
+          sessionStorage.setItem("user", userName);
+          props.history.push(`/room/${roomName}`); 
+
+          this.setState({
+            userReady: true
+          });
+        }
+      }
+    });
+  }
+
+  generateToken(length) {
+    var result = "";
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
   }
 
   clickJoin() {
-    const roomName = "abdelmoghit";
-    const userName = "abdelmoghit";
-
-    if (!roomName || !userName) {
-      //setErr(true);
-      //setErrMsg('Enter Room Name or User Name');
-    } else {
-      socket.emit("BE-check-user", { roomId: roomName, userName });
-    }
+    socket.emit("BE-check-user", { roomId: this.state.roomName });
   }
 
   render() {
-    console.log(this.state.currentUser);
+    console.log(this.state.currentUser)
     return (
       <>
         <Navbar currentUser={this.state.currentUser} />
@@ -128,33 +130,6 @@ class Landing extends React.Component {
                               </span>
                             </Button>
                           </div>
-                          <FormGroup>
-                            <InputGroup className="btn-icon mb-3 mb-sm-0 ml-2">
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="fa fa-keyboard-o" />
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Enter meeting code"
-                                type="text"
-                                onFocus={() =>
-                                  this.setState({ searchFocused: true })
-                                }
-                                onBlur={() =>
-                                  this.setState({ searchFocused: false })
-                                }
-                              />
-                              <Button
-                                className="btn-1 mb-3 mb-sm-0 ml-2"
-                                outline
-                                type="button"
-                                color="info"
-                              >
-                                participate
-                              </Button>
-                            </InputGroup>
-                          </FormGroup>
                         </Row>
                       </Col>
                     </Col>

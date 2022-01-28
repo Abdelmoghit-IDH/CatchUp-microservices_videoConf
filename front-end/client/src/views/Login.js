@@ -1,4 +1,4 @@
-import Link from "react-router-dom/Link";
+import { Link } from "react-router-dom";
 import React from "react";
 
 import AuthService from "../services/auth.service";
@@ -75,8 +75,6 @@ class Login extends React.Component {
       loading: true,
     });
 
-    //this.form.validateAll();
-
     AuthService.login(this.state.username, this.state.password).then(
       () => {
         this.props.history.push("/");
@@ -101,11 +99,6 @@ class Login extends React.Component {
         });
       }
     );
-    /* else {
-      this.setState({
-        loading: false,
-      });
-    } */
   }
 
   render() {
