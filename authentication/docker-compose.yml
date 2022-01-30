@@ -1,6 +1,7 @@
 version: '3.1'
 services:
   dbpostgresql:
+    container_name: database-postgres
     image: postgres
     ports:
       - "5432:5432"
@@ -9,7 +10,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=mydb
   app:
-    container_name: app-springboot-postgresql
+    container_name: authentication-springboot
     image: app-springboot-postgresql
     build: ./
     environment:
