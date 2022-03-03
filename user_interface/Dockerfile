@@ -1,19 +1,19 @@
 FROM node:12-alpine
 
-# Create app directory
+#Create app directory 
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+#Copy source code from host to image
 COPY package*.json ./
 
-RUN npm install --python
+#Install dependencies
+RUN npm install 
 
-RUN npm install
+#Bundle app source
 
-# Bundle app source
 COPY . .
 
-EXPOSE 3000
+#Running port
+EXPOSE 3030
 
-CMD [ "npm", "start" ]
+ENTRYPOINT [ "npm" , "start" ]

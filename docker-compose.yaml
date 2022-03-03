@@ -1,0 +1,41 @@
+version: "3"
+services:
+  frontend-service:
+    container_name: frontend-service
+    image: frontend-service
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+      - socker-service
+      - auth-service
+
+  auth-service:
+    container_name: auth-service
+    image: auth-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/mydb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+  
+  database:
+    container_name: database
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mydb
+  
+  socket-service:
+    container_name: socket-service
+    image: socker-service
+    ports: 
+      - 3030:3030
+
